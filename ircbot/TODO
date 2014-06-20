@@ -1,0 +1,27 @@
+[]> FileManager
+  [Method]> IN
+  [Method]> OUT 
+    [Location]> Local
+      [R:Arg]> 
+      [O:Arg>
+    [Location]> FTP
+    
+  
+[]> Add Log Reporting
+  []--> Remote Server API (instant only!)
+  []--> Socket (instant only!)
+  []--> FTP 
+  []--> File
+  
+[]> {irc-user-from-UserFunctionList-variable} Required
+  []-> User Function List
+    [CMD]--> SEND <destination> <msg>
+      [O:Format]> PRIVMSG
+        [Allowed]-> ['*'] ## ['*']==Allow PRIVMSG/NOTICE. If you want individual set to ['PRIVMSG'] or ['NOTICE']
+      []> Allowed ['*'] ## Can be ['*'] for Any, or individually seperated ['#channel1,'#channel2','#chan...', 'nick1', 'nick2...']
+      []> Denied Destination [''] ## list of channels or nicks to NOT send messages 
+    [CMD]--> XDCC SEND <pack number>
+      [pack number]> Maximum File Size <number>
+    []--> FileManager <direction> <format> "<source>" "<destination>"
+      []---> Allowed Format ['*'] ## *=All...or, ['FTP','HTTP','SOCKET','XDCC']
+      []---> Allowed Args ['*'] ## see []> FileManger for list of args
